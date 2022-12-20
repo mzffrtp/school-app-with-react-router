@@ -1,0 +1,21 @@
+{
+    "students": [
+        {
+            "id": "1",
+            "name": "Ali",
+            "lastname": "Veli",
+            "studentNo": "123",
+            "studentClass": "7/A",
+            "schoolName": "Brynäs"
+        },
+        {
+            "id": "2",
+            "name": "Ali",
+            "lastname": "Veli",
+            "studentNo": "123",
+            "studentClass": "7/A",
+            "schoolName": "Brynäs"
+        }
+    ]
+        
+}
