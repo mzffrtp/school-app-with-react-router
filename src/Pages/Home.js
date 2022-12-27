@@ -35,10 +35,10 @@ const Home = () => {
             <div className="container mt-5 d-flex justify-content-end">
                 <button 
                 onClick={()=>navigate("/add-student")}
-                className="btn btn-primary">Add New Student
+                className="btn btn-info">Add New Student
                 </button>
             </div>
-            <ListStudents students={students} />
+            <ListStudents students={students} setStudents={setStudents} />
         </div>
     )
 }

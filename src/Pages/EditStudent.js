@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import axios from "axios";
-import {useNavigate} from "react-router-dom"
-
+import React, {useEffect, useState} from "react";
 
 import Header from "../Components/Header";
 
+import {useParams, useNavigate} from "react-router-dom"
+import axios from "axios";
 
 
-const AddStudents = () => {
+const EditStudent = () => {
 
-    const navigate = useNavigate();
+    const {studentId} = useParams();
+    const navigate =useNavigate();
 
     const [studentNo, setStudentNo] = useState("");
     const [name, setName] = useState("");
@@ -17,9 +17,14 @@ const AddStudents = () => {
     const [studentClass, setstudentClass] = useState("");
     const [schoolName, setSchoolName] = useState("");
 
-    const handleSubmit = ((event) => {
+    const [editedStudent, setEditedStudent] = useState(null);
+
+    const handleEdit = (event) =>{
         event.preventDefault()
 
+        if (editedStudent === null) {
+            return null
+        }
         if (
             studentNo === "" ||
             name === "" ||
@@ -30,31 +35,53 @@ const AddStudents = () => {
             alert("All of the fields must be filled!")
             return
         }
-        const newStudent = {
-            id:String(new Date().getTime()),
-            studentNo: studentNo,
+
+        const updatedStudent = {
+            id:editedStudent.id,
             name:name,
             lastname:lastname,
-            studentClass: studentClass,
-            schoolName: schoolName
+            studentClass:studentClass,
+            schoolName:schoolName,
         }
 
         axios
-        .post("http://localhost:3005/students", newStudent)
-        .then((response)=>{
-            navigate("/")
-        })
-        .catch((eroor)=>{
-            alert("An error occured when creating a new student!")
-        })
+            .put(`http://localhost:3005/students/${updatedStudent.id}`, updatedStudent)
+            .then(res=>{
+                navigate("/")
+            })
+            .catch(error=>{
+                alert("An error occured during editing!")
+            })
 
-       
-    })
+          
+
+
+
+
+    }
+
+    useEffect (()=> {
+        axios
+            .get (`http://localhost:3005/students/${studentId}`)
+            .then(res=>{
+                setStudentNo(res.data.studentNo);
+                setName(res.data.name);
+                setLastname(res.data.lastname);
+                setstudentClass(res.data.studentClass);
+                setSchoolName(res.data.schoolName);
+                setEditedStudent(res.data)
+            })
+            .catch((error)=>{
+                alert("An error occured when editing student!")
+                navigate("/")
+            })
+    },[])
+
     return (
         <div>
             <Header />
             <div className="container my-5">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleEdit}>
                     <div className="mb-3">
                         <label htmlFor="exampleFormControlInput1" className="form-label">Student No</label>
                         <input
@@ -106,12 +133,13 @@ const AddStudents = () => {
                             placeholder="Ex: Cambridge" />
                     </div>
                     <div className="d-flex justify-content-center">
-                        <button className="btn btn-success my-2" type="submit">Save</button>
+                        <button className="btn btn-success my-2" type="submit">Edit</button>
                     </div>
                 </form>
             </div>
         </div>
     )
+
 }
 
-export default AddStudents
+export default EditStudent

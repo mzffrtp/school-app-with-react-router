@@ -1,21 +1,11 @@
 {
-    "students": [
-        {
-            "id": "1",
-            "name": "Ali",
-            "lastname": "Veli",
-            "studentNo": "123",
-            "studentClass": "7/A",
-            "schoolName": "Brynäs"
-        },
-        {
-            "id": "2",
-            "name": "Ali",
-            "lastname": "Veli",
-            "studentNo": "123",
-            "studentClass": "7/A",
-            "schoolName": "Brynäs"
-        }
-    ]
-        
+  "students": [
+    {
+      "id": "1672162563245",
+      "name": "asdfsd asdf",
+      "lastname": "das sd asdf",
+      "studentClass": "das sdfsdfas asdf",
+      "schoolName": "asd asdf"
+    }
+  ]
 }
