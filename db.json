@@ -1,11 +1,3 @@
 {
-  "students": [
-    {
-      "id": "1672162563245",
-      "name": "asdfsd asdf",
-      "lastname": "das sd asdf",
-      "studentClass": "das sdfsdfas asdf",
-      "schoolName": "asd asdf"
-    }
-  ]
+  "students": []
 }
